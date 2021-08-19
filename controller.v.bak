@@ -1,0 +1,19 @@
+module controller (opcode,alu_cntrl,mem_R_Wb,Reg_w);
+	
+	input [3:0] opcode;
+	output [2:0] alu_cntrl;
+	output mem_R_Wb,Reg_w;
+	
+	always@(*)
+	begin
+	
+		case (opcode)
+			4'b0000 : alu_cntrl = 3'b000; mem_R_Wb = 1'b0; Reg_w = 1'b1;
+			4'b0001 : alu_cntrl = 3'b000; mem_R_Wb = 1'b0; Reg_w = 1'b1;
+			4'b0010 : alu_cntrl = 3'b010; mem_R_Wb = 1'b0; Reg_w = 1'b1;
+			default: alu_cntrl = 3'b000; mem_R_Wb = 1'b0; Reg_w = 1'b0;
+		endcase
+	
+	end
+	
+endmodule 

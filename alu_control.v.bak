@@ -1,0 +1,6 @@
+module alu_control (input [1:0] cz_bits, input [3:0] opcode, output [3:0] alu_cntrl)
+begin
+
+	
+
+endmodule 

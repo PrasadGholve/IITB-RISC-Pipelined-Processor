@@ -1,0 +1,13 @@
+module ID_RD_reg (clk,IR_in,NPC_in,IR_out,NPC_out);
+	
+	input clk;
+	input [15:0] IR_in,NPC_in;
+	output [15:0] IR_out,NPC_out;
+	
+	always@(posedge clk)
+	begin
+		IR_out <= IR_in;
+		NPC_out <= NPC_in;
+	end 
+	
+endmodule

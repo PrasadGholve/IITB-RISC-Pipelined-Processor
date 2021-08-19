@@ -1,0 +1,15 @@
+module RD_EX_reg (clk,RD1_in,RD2_in,IMM_in,NPC_in,RD1_out,RD2_out,IMM_out,NPC_out);
+	
+	input clk;
+	input [15:0] RD1_in,RD2_in,IMM_in,NPC_in;
+	output [15:0] RD1_out,RD2_out,IMM_out,NPC_out;
+	
+	always@(posedge clk)
+	begin
+		RD1_out <= RD1_in;
+		RD2_out <= RD2_in;
+		IMM_out <= IMM_in;
+		NPC_out <= NPC_in;
+	end 
+	
+endmodule

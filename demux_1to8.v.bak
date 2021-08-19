@@ -1,0 +1,21 @@
+module demux_1to8 (In, out0, out1, out2, out3, out4, out5, out6, out7, sel);
+	
+	input [15:0] In;
+	input [2:0] sel;
+	output reg [15:0] out0, out1, out2, out3, out4, out5, out6, out7;
+	
+	always@(In, sel)
+	begin
+		case (sel)
+			000: out0 <= In;
+			001: out1 <= In;
+			010: out2 <= In;
+			011: out3 <= In;
+			100: out4 <= In;
+			101: out5 <= In;
+			110: out6 <= In;
+			111: out7 <= In;
+			default: out7 <= 16'h0000;
+	end 
+	
+endmodule 

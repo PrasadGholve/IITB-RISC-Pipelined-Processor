@@ -1,0 +1,14 @@
+module reg_16bits (clk, Ld, Din, Dout);
+
+	input clk, Ld;
+	input [15:0] Din;
+	input [15:0] Dout;
+	
+	always@(posedge clk)
+	begin
+		
+		if(Ld==1) Dout = Din;		
+		
+	end 
+	
+endmodule 

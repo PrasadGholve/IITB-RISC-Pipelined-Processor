@@ -1,0 +1,19 @@
+module reg_file (clk, A1, A2, A3, D3, D1, D2);
+	
+	input clk;
+	input [2:0] A1, A2 A3;
+	input [15:0] D3;
+	output [15:0] D1,D2;
+	
+	reg_16bits R0(clk, Ld0, Din0, Dout0);
+	reg_16bits R1(clk, Ld1, Din1, Dout1);
+	reg_16bits R2(clk, Ld2, Din2, Dout2);
+	reg_16bits R3(clk, Ld3, Din3, Dout3);
+	reg_16bits R4(clk, Ld4, Din4, Dout4);
+	reg_16bits R5(clk, Ld5, Din5, Dout5);
+	reg_16bits R6(clk, Ld6, Din6, Dout6);
+	reg_16bits R7(clk, Ld7, Din7, Dout7);
+	
+	
+
+endmodule 

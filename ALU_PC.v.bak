@@ -1,0 +1,15 @@
+module ALU_PC (rstn,opr1,opr2,result);
+	
+	input rstn;
+	input [15:0] opr1,opr2;
+	output [15:0] result;
+		
+	always@(negedge rstn)
+	begin
+		
+		if (rstn == 0) result = 16'h0000;
+		else result = opr1+opr2;
+		
+	end
+	
+endmodule

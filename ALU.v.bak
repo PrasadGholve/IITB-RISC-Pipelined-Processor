@@ -1,0 +1,36 @@
+module ALU (clk,rstn,alu_opr,opr1,opr2,result,z_flg);
+	
+	input clk,rstn;
+	input [15:0] opr1,opr2;
+	input [2:0] alu_opr;
+	output [15:0] result;
+	output z_flg;
+	
+	always@(*)
+	begin
+		if (result == 16'h0000) z_flg <= 1'b1;
+	end
+	
+	always@(posedge clk or negedge rstn)
+	begin
+		
+		if (rstn == 0) result <= 16'h0000;
+		else
+		begin
+			
+			case (alu_opr)
+			3'b000: result <= opr1+opr2;
+			3'b001: result <= opr1-opr2;
+			3'b010: result <= opr1 && opr2;
+			3'b011: result <= 16'h0000;
+			3'b100: result <= 16'h0000;
+			3'b101: result <= 16'h0000;
+			3'b110: result <= 16'h0000;
+			3'b111: result <= 16'h0000;
+			default: result <= 16'h0000;
+			
+		end
+		
+	end
+	
+endmodule

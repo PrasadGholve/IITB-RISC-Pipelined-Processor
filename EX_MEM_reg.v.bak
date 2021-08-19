@@ -1,0 +1,16 @@
+module EX_MEM_reg (clk,Zin,aluout_in,RD2_in,NPC_in,Zout,aluout_out,RD2_out,NPC_out);
+	
+	input clk,Zin;
+	input [15:0] aluout_in,RD2_in,NPC_in;
+	output Zout;
+	output [15:0] aluout_out,RD2_out,NPC_out;
+	
+	always@(posedge clk)
+	begin
+		aluout_out <= aluout_in;
+		RD2_out <= RD2_in;
+		Zout <= Zin;
+		NPC_out <= NPC_in;
+	end 
+	
+endmodule

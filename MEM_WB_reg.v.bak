@@ -1,0 +1,13 @@
+module MEM_WB_reg (clk,aluout_in,dout_in,aluout_out,dout_out);
+	
+	input clk;
+	input [15:0] aluout_in,dout_in;
+	output [15:0] aluout_out,dout_out;
+	
+	always@(posedge clk)
+	begin
+		aluout_out <= aluout_in;
+		dout_out <= dout_in;
+	end 
+	
+endmodule

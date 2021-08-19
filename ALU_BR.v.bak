@@ -1,0 +1,13 @@
+module ALU_BR (opr1,opr2,result);
+	
+	input [15:0] opr1,opr2;
+	output [15:0] result;
+		
+	always@(*)
+	begin
+		
+		result = opr1+opr2;
+		
+	end
+	
+endmodule

@@ -1,0 +1,28 @@
+module datapath_proc (clk, resetn);
+
+	input clk, resetn;
+	
+	
+	
+	instr_mem(clk,Addr,Dout);
+	
+	IF_ID_reg (clk,IR_in,NPC_in,IR_out,NPC_out);
+	
+	controller cntrl(opcode,alu_cntrl,mem_R_Wb,Reg_w);
+	
+	ID_RD_reg (clk,IR_in,NPC_in,IR_out,NPC_out);
+	
+	reg_file regfile(clk, A1, A2, A3, PC_Ld, PC_Din, PC_Dout, D3, D1, D2);
+	
+	RD_EX_reg (clk,RD1_in,RD2_in,IMM_in,NPC_in,RD1_out,RD2_out,IMM_out,NPC_out);
+	
+	ALU (rstn,alu_opr,opr1,opr2,result,z_flg);
+	
+	EX_MEM_reg (clk,Zin,aluout_in,RD2_in,NPC_in,Zout,aluout_out,RD2_out,NPC_out);
+	
+	data_mem(clk,R_Wb,Addr,Din,Dout);
+		
+	MEM_WB_reg (clk,aluout_in,dout_in,aluout_out,dout_out);
+	
+	
+endmodule 

@@ -1,0 +1,63 @@
+module pipeline_proc_tb;
+	
+	parameter [5:0] pred_n = 6'b001010;
+	reg [16:0] itr_in_bias;
+	reg start_NN,clk, layer,reset_n;
+	wire end_NN;
+	wire [2:0] state_mat,state_pred;
+	wire [3:0] state_NN;
+	wire [5:0] m,n,l,pred;
+	reg [16:0] Inc_Amt;
+	reg [31:0] test [599:0];
+	
+	NN_top #(pred_n) dut_NN(clk, start_NN, end_NN, m, n,l,itr_in_bias,state_NN,state_mat,state_pred,pred,reset_n,Inc_Amt);
+	
+	always #5 clk = ~clk;
+	
+	initial  
+	begin 
+			$readmemb("C:\\intelFPGA_lite\\18.1\\my_file\\NN_40_16_10\\memory_files\\test_class.mem", test);
+	end
+	
+	initial
+	begin
+		clk = 0; reset_n =0; 
+		#3 reset_n =1;
+		#3 Inc_Amt=			17'b00000000000101001;
+		#3 itr_in_bias = 	17'd24600;
+		#3 start_NN=1'b1;
+		#5263000 $finish;
+	end
+	
+	always@(state_NN)
+	begin
+		if (state_NN == 4'd9)
+		begin
+			$display ("Correct %d/600", correct);
+			$display ("Wrong %d/600", wrong);
+		end
+	end
+	
+	integer i=0;
+	integer correct =0;
+	integer wrong = 0;
+	
+	always@(state_NN)
+	begin
+		if (state_pred == 3'b011)
+		begin
+			if (test[i] == pred)
+			begin
+				$display ("Test Passed : input %d - Expected result - %d, Output - %d", i, test[i], pred);
+				correct = correct + 1;
+			end
+			else
+			begin
+				$display ("Test Failed : input %d - Expected result - %d, Output - %d", i, test[i], pred);
+				wrong = wrong + 1;
+			end
+			i = i+1;
+		end
+	end
+
+endmodule 
